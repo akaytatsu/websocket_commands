@@ -9,7 +9,7 @@ class Command:
 
         for data in self.data.get("commands"):
 
-            if command.strip() == data.get("command").get("code"):
+            if command.strip().lower() == data.get("command").get("code").strip().lower():
                 return data.get("command").get("exec")
 
         return None
