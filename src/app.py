@@ -15,6 +15,8 @@ def command():
 
     executor = command_data.find_command(command)
 
+    print(executor)
+
     if not executor:
         abort(404, description="Command not found")
 
