@@ -7,6 +7,10 @@ class Command:
 
     def find_command(self, command: str):
 
+        print("command")
+        print("command")
+        print(command)
+
         for data in self.data.get("commands"):
 
             if command.strip().lower() == data.get("command").get("code").strip().lower():
