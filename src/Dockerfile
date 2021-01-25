@@ -11,6 +11,6 @@ RUN pip install -r requirements.txt
 
 COPY ./ ./
 
-EXPOSE 8080
+ENTRYPOINT ["sh", "./docker_assets/entrypoint.sh"]
 
 CMD ["flask", "run", "--host", "0.0.0.0"]
