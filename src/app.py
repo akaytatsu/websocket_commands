@@ -15,6 +15,9 @@ def command():
 
     executor = command_data.find_command(command)
 
+    print("executor")
+    print("executor")
+    print("executor")
     print(executor)
 
     if not executor:
