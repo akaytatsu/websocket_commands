@@ -13,7 +13,10 @@ class Command:
 
         for data in self.data.get("commands"):
 
-            if command.strip().lower() == data.get("command").get("code").strip().lower():
+            print("data")
+            print(data)
+
+            if command == data.get("command").get("code").strip().lower():
                 return data.get("command").get("exec")
 
         return None

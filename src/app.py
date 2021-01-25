@@ -12,7 +12,7 @@ socketio = SocketIO(app)
 
 @app.route("/command")
 def command():
-    command = request.args.get("command")
+    command = request.args.get("command").strip().lower()
 
     executor = command_data.find_command(command)
 
