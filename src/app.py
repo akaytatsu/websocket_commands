@@ -1,36 +1,31 @@
-from flask import Flask, render_template, request
-from flask_socketio import SocketIO, emit
+from flask import Flask, request, abort
+from flask_socketio import SocketIO
+
+from utils import Command
+
+command_data = Command()
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret!'
 socketio = SocketIO(app)
 
-@app.route('/')
-def index():
-    return render_template('index.html')
-
 @app.route('/command')
 def command():
     command = request.args.get('command')
-    socketio.emit("my_message", {'command': command})
+
+    executor = command_data.find_command(command)
+
+    if not executor:
+        abort(404, description="Command not found")
+
+
+    socketio.emit("my_message", {'command': executor})
     return ""
-
-@socketio.on('my event')
-def test_message(message):
-    emit('my response', {'data': message['data']})
-
-@socketio.on('my broadcast event')
-def test_message(message):
-    emit('my response', {'data': message['data']}, broadcast=True)
-
-@socketio.on('connect')
-def test_connect():
-    emit('my response', {'data': 'Connected'})
 
 @socketio.on('disconnect')
 def test_disconnect():
     print('Client disconnected')
 
 if __name__ == '__main__':
-    socketio.run(app) #, host='0.0.0.0', debug=True, port=5000)
+    socketio.run(app)
    

@@ -17,5 +17,5 @@ def my_message(data):
 def disconnect():
     print('disconnected from server')
 
-sio.connect('http://localhost:5050')
+sio.connect('http://remotesocket.hprs.com.br')
 sio.wait()

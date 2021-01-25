@@ -1,0 +1,4 @@
+commands:
+  - command:
+      code: folder
+      exec: code ~/
